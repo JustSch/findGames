@@ -1,4 +1,4 @@
-#findGames
+# findGames
 
 Finds The Executables for Steam Games and Eventually More
 
