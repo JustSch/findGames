@@ -65,18 +65,28 @@ namespace findGames
         {
             Regex firstLetters = new Regex(@"(\b[a-zA-Z])[a-zA-Z]* ?");
 
+            bool isDemo;
+
             String file = filename.Substring(filename.LastIndexOf("\\") + 1);
             String direc = directory.Substring(directory.LastIndexOf("\\") + 1);
             String direcNoSpace = Regex.Replace(direc, @"\s+", String.Empty);
             String directfirstLetter = firstLetters.Replace(direc, "$1");
             String directNoThe = "______________";
+            String directNoSQuote = "___________";
+            String directNoDemo = "________";
             if (direcNoSpace.Contains("The"))
             {
-                directNoThe = direcNoSpace.Remove(direc.IndexOf("The"), "The".Length);
+                directNoThe = direcNoSpace.Remove(direcNoSpace.IndexOf("The"), "The".Length);
 
             }
-
-            
+            if (direcNoSpace.Contains("'"))
+            {
+                directNoSQuote = direcNoSpace.Remove(direcNoSpace.IndexOf("'"), "'".Length);
+            }
+            if (direcNoSpace.Contains("Demo"))
+            {
+                directNoDemo = direcNoSpace.Remove(direcNoSpace.IndexOf("Demo"), "Demo".Length);
+            }
             Console.WriteLine(file);
             Console.WriteLine(direc);
             Console.WriteLine(direcNoSpace);
@@ -100,7 +110,7 @@ namespace findGames
 
             if (string.Equals(file, directfirstLetter + ".exe", StringComparison.OrdinalIgnoreCase)) return true;
 
-            if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter))
+            if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter) || file.Contains(directNoSQuote))
             {
                 //Console.WriteLine("here..................................................." + directfirstLetter +" "+file);
 
@@ -109,6 +119,14 @@ namespace findGames
 
                 return true;
             }
+
+            if (file.Contains(directNoDemo)) return true;
+
+            if (file.Contains("RPG_RT.exe")) return true;
+
+            if (file.Contains("Dagon64.exe")) return true;
+
+            if (file.Contains("SEGAGenesisClassics.exe")) return true;
 
             return false;
         }
