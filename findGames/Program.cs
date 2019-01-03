@@ -17,7 +17,6 @@ namespace findGames
             var STEAM_DIRECTORY = "d:\\SteamLibrary\\steamapps\\common";
             try
             {
-                //Find EXEs of GAMES AND SAVE THEM USING REGEX PATTEREN?
                 ArrayList fileArray = new ArrayList();
                 //AttemptLocateGameExe LocateGame = new AttemptLocateGameExe();
                 //bool AttemptLocateGameExe() = new AttemptLocateGameExe;
@@ -42,7 +41,7 @@ namespace findGames
                     }
                 }
                 PrintValues(fileArray);
-                Console.WriteLine(fileArray.Count);
+                Console.WriteLine("Probably " + fileArray.Count +" Executables");
             }
 
             catch (Exception e)
@@ -54,14 +53,14 @@ namespace findGames
 
 
         }
-
+        //Used to Print From ArrayList Created Earlier
         public static void PrintValues(IEnumerable myList)
         {
             foreach (Object obj in myList)
                 Console.WriteLine("   {0}", obj);
             Console.WriteLine();
         }
-
+        //Attempts to Locate Steam Executables Using Patterns Noticed in My Steam Folders
         public static bool AttemptLocateGameExe(String filename, String directory)
         {
             Regex firstLetters = new Regex(@"(\b[a-zA-Z])[a-zA-Z]* ?");
@@ -78,8 +77,6 @@ namespace findGames
             }
 
             
-
-
             Console.WriteLine(file);
             Console.WriteLine(direc);
             Console.WriteLine(direcNoSpace);
@@ -103,8 +100,9 @@ namespace findGames
 
             if (string.Equals(file, directfirstLetter + ".exe", StringComparison.OrdinalIgnoreCase)) return true;
 
-            if (file.Contains(direc) || file.Contains(direcNoSpace) ||  file.Contains(directNoThe))
+            if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter))
             {
+                //Console.WriteLine("here..................................................." + directfirstLetter +" "+file);
                 return true;
             }
 
