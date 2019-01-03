@@ -103,6 +103,10 @@ namespace findGames
             if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter))
             {
                 //Console.WriteLine("here..................................................." + directfirstLetter +" "+file);
+
+         
+                if (file.Contains("Unity")) return false;
+
                 return true;
             }
 
