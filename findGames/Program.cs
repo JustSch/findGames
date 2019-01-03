@@ -18,26 +18,18 @@ namespace findGames
             try
             {
                 ArrayList fileArray = new ArrayList();
-                //AttemptLocateGameExe LocateGame = new AttemptLocateGameExe();
-                //bool AttemptLocateGameExe() = new AttemptLocateGameExe;
+
                 string[] dirs = Directory.GetDirectories(@STEAM_DIRECTORY); // for Steam Directory
                 Console.WriteLine("The Number of Game Directories: {0}.", dirs.Length);
                 foreach(String dir in dirs)
                 {
-                    //Console.WriteLine(dir);
                     string[] fils = Directory.GetFiles(@dir, "*.exe");
                     
                     foreach (String fl in fils)
                     {
-                        //if (fils.Length == 1)
-                        //{
-                            
-                        //}
-
+                        
                         if (AttemptLocateGameExe(fl, dir)) fileArray.Add(fl);
-
-                        //AttemptLocateGameExe(fl, dir);
-                       // Console.WriteLine(fl);
+                 
                     }
                 }
                 PrintValues(fileArray);
@@ -96,7 +88,6 @@ namespace findGames
 
             if (string.Equals(file,direc+".exe", StringComparison.OrdinalIgnoreCase))
             {
-                //Console.WriteLine("yes");
                 return true;
             }
 
@@ -106,15 +97,12 @@ namespace findGames
 
             if (string.Equals(file,direcNoSpace+".exe",StringComparison.OrdinalIgnoreCase)) return true;
 
-            //Console.WriteLine(string.Equals(file, direcNoSpace, StringComparison.OrdinalIgnoreCase)+"J");
 
             if (string.Equals(file, directfirstLetter + ".exe", StringComparison.OrdinalIgnoreCase)) return true;
 
             if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter) || file.Contains(directNoSQuote))
             {
-                //Console.WriteLine("here..................................................." + directfirstLetter +" "+file);
-
-         
+        
                 if (file.Contains("Unity")) return false;
 
                 return true;
