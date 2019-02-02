@@ -79,44 +79,55 @@ namespace findGames
             {
                 directNoDemo = direcNoSpace.Remove(direcNoSpace.IndexOf("Demo"), "Demo".Length);
             }
-            Console.WriteLine(file);
-            Console.WriteLine(direc);
-            Console.WriteLine(direcNoSpace);
-            Console.WriteLine(directfirstLetter+"Tag");
-            Console.WriteLine(string.Equals(file, direc + ".exe"));
-            Console.WriteLine(directNoThe);
+            
+            //Console.WriteLine(file);
+            //Console.WriteLine(direc);
+            //Console.WriteLine(direcNoSpace);
+            //Console.WriteLine(directfirstLetter+"Tag");
+            //Console.WriteLine(string.Equals(file, direc + ".exe"));
+            //Console.WriteLine(directNoThe);
 
-            if (string.Equals(file,direc+".exe", StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
+            //Compares File's Name to Certain Cases.  Will Probably Be Replaced By CompareTo Later
+            switch(file)
+                {
+                    case string FileName when FileName.Equals(direc+".exe", StringComparison.OrdinalIgnoreCase):
+                        return true;
 
-            if (string.Equals(file, "launcher.exe", StringComparison.OrdinalIgnoreCase)) return true;
+                    case string FileName when FileName.Equals("launcher.exe", StringComparison.OrdinalIgnoreCase):
+                        return true;
+                    case string FileName when FileName.Equals("game.exe", StringComparison.OrdinalIgnoreCase):
+                        return true;    
+                    case string FileName when FileName.Equals(direcNoSpace+".exe",StringComparison.OrdinalIgnoreCase):
+                        return true;
+                    case string FileName when FileName.Equals(directfirstLetter + ".exe", StringComparison.OrdinalIgnoreCase):
+                        return true;
 
-            if (string.Equals(file,"game.exe", StringComparison.OrdinalIgnoreCase)) return true;
+                    case string FileName when FileName.Contains(direcNoSpace):
+                        if (file.Contains("Unity")) return false;
+                        return true;
+                    case string FileName when FileName.Contains(directNoThe):
+                        if (file.Contains("Unity")) return false;
+                        return true;
+                    case string FileName when FileName.Contains(directfirstLetter):
+                        if (file.Contains("Unity")) return false;
+                        return true;
+                    case string FileName when FileName.Contains(directNoSQuote):
+                        if (file.Contains("Unity")) return false;
+                        return true;
+                    case string FileName when FileName.Contains(directNoDemo):
+                        return true;
+                    case string FileName when FileName.Contains("RPG_RT.exe"):
+                        return true;
+                    case string FileName when FileName.Contains("Dagon64.exe"):
+                        return true;
+                    case string FileName when FileName.Contains("SEGAGenesisClassics.exe"):
+                        return true;
+                    default:
+                        return false;
 
-            if (string.Equals(file,direcNoSpace+".exe",StringComparison.OrdinalIgnoreCase)) return true;
+                }
 
-
-            if (string.Equals(file, directfirstLetter + ".exe", StringComparison.OrdinalIgnoreCase)) return true;
-
-            if (file.Contains(direcNoSpace) ||  file.Contains(directNoThe) || file.Contains(directfirstLetter) || file.Contains(directNoSQuote))
-            {
-        
-                if (file.Contains("Unity")) return false;
-
-                return true;
-            }
-
-            if (file.Contains(directNoDemo)) return true;
-
-            if (file.Contains("RPG_RT.exe")) return true;
-
-            if (file.Contains("Dagon64.exe")) return true;
-
-            if (file.Contains("SEGAGenesisClassics.exe")) return true;
-
-            return false;
+            
         }
     }
 }
