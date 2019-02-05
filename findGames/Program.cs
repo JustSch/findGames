@@ -16,7 +16,6 @@ namespace findGames
         {
             //Will be set to a generic Directory?
             var STEAM_DIRECTORY = "d:\\SteamLibrary\\steamapps\\common";
-            int PlayNum = 0;
             ArrayList fileArray = new ArrayList();
             try
             {
@@ -45,7 +44,7 @@ namespace findGames
             }
 
             Console.WriteLine("Please Choose The Number For The Game You Want To Play");
-            if (int.TryParse(Console.ReadLine(), out PlayNum))
+            if (int.TryParse(Console.ReadLine(), out int PlayNum))
             {
                 Console.WriteLine("Starting: " + fileArray[PlayNum - 1 ]);
                 Process.Start(Convert.ToString(fileArray[PlayNum - 1 ]));
