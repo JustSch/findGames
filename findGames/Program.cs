@@ -6,18 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace findGames
 {
     class Program
-    {
+    {   
         static void Main()
         {
             //Will be set to a generic Directory?
             var STEAM_DIRECTORY = "d:\\SteamLibrary\\steamapps\\common";
+            int PlayNum = 0;
+            ArrayList fileArray = new ArrayList();
             try
             {
-                ArrayList fileArray = new ArrayList();
+                
 
                 string[] dirs = Directory.GetDirectories(@STEAM_DIRECTORY); // for Steam Directory
                 Console.WriteLine("The Number of Game Directories: {0}.", dirs.Length);
@@ -40,7 +43,20 @@ namespace findGames
             {
                 Console.WriteLine("The Process Failed: {0}", e.ToString());
             }
-            Console.WriteLine("Press Any Button To Exit.........................................");
+
+            Console.WriteLine("Please Choose The Number For The Game You Want To Play");
+            if (int.TryParse(Console.ReadLine(), out PlayNum))
+            {
+                Console.WriteLine("Starting: " + fileArray[PlayNum - 1 ]);
+                Process.Start(Convert.ToString(fileArray[PlayNum - 1 ]));
+            }
+            else
+            {
+                Console.WriteLine("Bad Input");
+            }
+
+            Console.WriteLine("Press Enter To Exit.........................................");
+             
             Console.Read();
 
 
@@ -48,10 +64,20 @@ namespace findGames
         //Used to Print From ArrayList Created Earlier
         public static void PrintValues(IEnumerable myList)
         {
-            foreach (Object obj in myList)
-                Console.WriteLine("   {0}", obj);
+            int filenum = 0;
+            foreach (String obj in myList)
+            {
+                //num++;
+                Console.Write("   {0} ", obj); //fix here'
+                filenum++;
+                Console.WriteLine(filenum);
+            }
             Console.WriteLine();
+           
         }
+
+        
+
         //Attempts to Locate Steam Executables Using Patterns Noticed in My Steam Folders
         public static bool AttemptLocateGameExe(String filename, String directory)
         {
