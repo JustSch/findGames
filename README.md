@@ -1,5 +1,4 @@
 # findGames
 
-Finds The Executables for Steam Games and Eventually More
+Finds The Executables for Steam Games
 
-TODO: Fixes and Adding from Other Game Clients

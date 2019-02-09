@@ -43,7 +43,7 @@ namespace findGames
                 Console.WriteLine("The Process Failed: {0}", e.ToString());
             }
 
-            Console.WriteLine("Please Choose The Number For The Game You Want To Play");
+            Console.WriteLine("Please Choose The Number For The Game You Want To Play or Press Enter To Skip");
             if (int.TryParse(Console.ReadLine(), out int PlayNum))
             {
                 Console.WriteLine("Starting: " + fileArray[PlayNum - 1 ]);
@@ -67,7 +67,7 @@ namespace findGames
             foreach (String obj in myList)
             {
                 //num++;
-                Console.Write("   {0} ", obj); //fix here'
+                Console.Write("   {0} ", obj); 
                 filenum++;
                 Console.WriteLine(filenum);
             }
@@ -82,7 +82,7 @@ namespace findGames
         {
             Regex firstLetters = new Regex(@"(\b[a-zA-Z])[a-zA-Z]* ?");
 
-            bool isDemo;
+            //bool isDemo;
 
             String file = filename.Substring(filename.LastIndexOf("\\") + 1);
             String direc = directory.Substring(directory.LastIndexOf("\\") + 1);
